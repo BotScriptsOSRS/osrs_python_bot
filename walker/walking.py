@@ -108,7 +108,6 @@ class Walking():
         
     def walk(self, path: Path):
         '''Walks a path by clicking on the minimap'''
-        path = path
         while path:
             # Update position data.
             position_data = self.get_live_info('worldPoint')

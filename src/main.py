@@ -4,11 +4,11 @@ from data import Data
 from path_enum import Path
 
 # Configuration
-client_top_border = 30
-client_side_border = 50
-tiles_pixels = 5
-offset_minimap_x = 103.0
-offset_minimap_y = 110.0
+client_top_border = 0
+client_side_border = 0
+tiles_pixels = 0
+offset_minimap_x = 0.0
+offset_minimap_y = 0.0
 
 # Initiate classes
 data = Data()

@@ -1,6 +1,8 @@
 from http.server import BaseHTTPRequestHandler,HTTPServer
 import simplejson
 
+# http://127.0.0.1:80/
+
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)

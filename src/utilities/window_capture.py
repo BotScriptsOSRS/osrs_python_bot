@@ -1,4 +1,5 @@
 import win32gui
+from typing import List
 
 class WindowCapture():
 
@@ -18,7 +19,7 @@ class WindowCapture():
         self.window = self.get_window('Runelite')
         self.center_minimap = self.get_center_minimap(self.window)
 
-    def get_window(self, windowname: str) -> list:
+    def get_window(self, windowname: str) -> List[int]:
         '''Returns the position of the window and the size of the window excluding the borders.'''
         # Get window handle.
         hwnd = win32gui.FindWindow(None, windowname)
@@ -33,7 +34,7 @@ class WindowCapture():
         h = rect[3] - y - self.client_top_border
         return [x, y, w, h]
 
-    def get_center_minimap(self, box: list) -> list:
+    def get_center_minimap(self, box: List[int]) -> List[float]:
         '''Returns the coordinates of the center of the minimap.'''
         map_center_x = box[0] + box[2] - self.offset_minimap_x
         map_center_y = box[1] + self.offset_minimap_y

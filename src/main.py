@@ -1,6 +1,6 @@
-from window_capture import WindowCapture
-from walking import Walking
-from data import Data
+from utilities.window_capture import WindowCapture
+from walker.walking import Walking
+from utilities.data import Data
 from path_enum import Path
 
 # Configuration

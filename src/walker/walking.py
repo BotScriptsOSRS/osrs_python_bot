@@ -2,7 +2,7 @@ import pyautogui
 import math
 
 from time import sleep
-from path_enum import Path
+from .path_enum import Path
 from utilities.data import Data
 from utilities.window_capture import WindowCapture
 from typing import List

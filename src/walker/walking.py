@@ -3,8 +3,8 @@ import math
 
 from time import sleep
 from path_enum import Path
-from data import Data
-from window_capture import WindowCapture
+from utilities.data import Data
+from utilities.window_capture import WindowCapture
 from typing import List
 
 class Walking():

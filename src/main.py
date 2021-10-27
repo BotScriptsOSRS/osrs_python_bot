@@ -1,7 +1,7 @@
 from utilities.window_capture import WindowCapture
 from walker.walking import Walking
 from utilities.data import Data
-from path_enum import Path
+from walker.path_enum import Path
 
 # Configuration
 client_top_border = 0

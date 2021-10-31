@@ -1,26 +1,31 @@
-from utilities.window_capture import WindowCapture
-from walker.walking import Walking
-from utilities.data import Data
-from walker.path_enum import Path
+from walker import Walking
+from utilities import TakeBreak
+from tanning_bot import TanBot, Hide
+import time 
+import random
 
-# Configuration
-client_top_border = 0
-client_side_border = 0
-tiles_pixels = 0
-offset_minimap_x = 0.0
-offset_minimap_y = 0.0
+walker = Walking()
+breaker = TakeBreak()
+tan_bot = TanBot()
+hide = Hide.COW_HIDE.value
+tanned_hide = Hide.HARD_LEATHER.value
 
-# Initiate classes
-data = Data()
-window = WindowCapture(client_top_border,
-                        client_side_border,
-                        offset_minimap_x, 
-                        offset_minimap_y)
-walker = Walking(window, data, tiles_pixels)
+breaker.login()
 
 def main():
-    path = Path.DRAYNOR_GE.value
-    walker.walk(path)
+
+    time_start = time.time()
+    time_duration_min = random.randint(120, 180)
+
+    while True:
+        # Run script for 2 to 3 hours.
+        while time.time() < time_start + time_duration_min*60:
+            tan_bot.run(hide, tanned_hide)
+        tan_bot.inv_open = False
+        # Take a break of 5 to 15 minutes.
+        breaker.take_break()
+        time_start = time.time()
 
 if __name__ == '__main__':
     main()
+    

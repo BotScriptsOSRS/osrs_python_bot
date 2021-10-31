@@ -1,20 +1,21 @@
 from window_capture import WindowCapture
 import pyautogui
 
-# Configuration
-client_top_border = 0
-client_side_border = 0
-offset_minimap_x = 0
-offset_minimap_y = 0
+# ONLY USED TO CONFIGURE OFFSETS, NOT TO RUN SCRIPT.
 
-window = WindowCapture(client_top_border,
-                        client_side_border,
-                        offset_minimap_x, 
-                        offset_minimap_y)
+# Configuration
+client_top_border = 30
+client_side_border = 50
+offset_minimap_x = 103
+offset_minimap_y = 110
+offset_run_x = 207
+offset_run_y = 166
+
+window = WindowCapture()
 
 box = window.get_window('Runelite')
-coords = window.get_center_minimap(box)
-print(coords)
-pyautogui.displayMousePosition()
-# pyautogui.click(coords)
-# 
+x,y = window.run_button
+print(window.run_button)
+# pyautogui.displayMousePosition()
+pyautogui.moveTo(x,y,2)
+# 2174 487

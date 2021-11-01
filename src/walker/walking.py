@@ -16,6 +16,8 @@ class Walking(Data, ObjectDetection):
     def __init__(self):
         Data.__init__(self)
         ObjectDetection.__init__(self)
+        self.run_bool = False
+        self.run_energy = Data.get_live_info(self,'runEnergy')
         position_data = Data.get_live_info(self,'worldPoint')
         if position_data != None:
             self.live_pos = [position_data['x'], position_data['y']]
@@ -44,7 +46,7 @@ class Walking(Data, ObjectDetection):
         '''Clicks the minimap to change position'''
         tiles = self.compute_tiles(self.live_pos[0], self.live_pos[1], new_pos[0], new_pos[1])
         if tiles != []:
-            pyautogui.moveTo(center_mini[0]+tiles[0], center_mini[1]+tiles[1])
+            pyautogui.moveTo(center_mini[0]+tiles[0], center_mini[1]+tiles[1], duration = 0.15)
             pyautogui.click()
             sleep(2)
 
@@ -62,11 +64,8 @@ class Walking(Data, ObjectDetection):
 
     def turn_run_on(self) -> None:
         """Turns on run if at 100% run energy."""
-        coords = self.locate_image_on_screen('images/full_run.png', 0.95)
-        if coords != []:
-            x ,y = coords[0]
-            pyautogui.moveTo(x,y, 0.2)
-            pyautogui.click()
+        pyautogui.moveTo(self.run_button, duration = 0.2)
+        pyautogui.click()
 
     def check_if_at_destination(self, area_destination: Area) -> bool:
         """Returns whether the player reached his destination."""
@@ -88,20 +87,38 @@ class Walking(Data, ObjectDetection):
             self.click_closest_object(1)
             sleep(1)
 
-    def walk(self, path: Path, area_destination: Area, sleep_sec: int) -> None:
+    def get_run_energy(self) -> float:
+        energy = self.get_live_info('runEnergy')
+        if energy != None:
+            self.energy = energy
+        if self.energy < 5 or self.energy == 100:
+            self.run_bool = False
+        return self.energy
+
+    def walk(self, path: Path, run_path: Path, area_destination: Area, final_destination: Area = [0,0,0,0], sleep_sec_run: float = 0.0, sleep_sec_walk: float = 0.0) -> None:
         '''Walks a path by clicking on the minimap'''
         while True:
-            # If run is off and energy is at 100, turn on run.
-            self.turn_run_on() # ~0.5 sec
+            # If run is off and run energy is larger than 60, turn on run.
+            if self.get_run_energy() > 60 and self.run_bool == False:
+                self.turn_run_on()
+                self.run_bool = True
             # Get live position.
             self.get_live_pos()
-            new_pos = self.get_target_pos(path)
+            if self.run_bool:
+                new_pos = self.get_target_pos(run_path)
+            else:
+                new_pos = self.get_target_pos(path)
             # if not at destination and no door on screen, walk. Otherwise stop.
-            if self.check_if_at_destination(area_destination):
-                sleep(sleep_sec)
+            if self.check_if_at_destination(area_destination) or self.check_if_at_destination(final_destination):
+                sleep(0.5)
                 break
             # Change position.
             self.change_position(self.center_minimap, new_pos)
+            if new_pos == path[-1] and len(path) > 3:
+                if self.run_bool == True:
+                    sleep(sleep_sec_run)
+                else:
+                    sleep(sleep_sec_walk)
 
 
 

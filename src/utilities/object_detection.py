@@ -55,7 +55,7 @@ class ObjectDetection(WindowCapture):
         """Clicks the marked object that is closest to the player."""
         x,y = self.find_closest_object(color)
         if x !=0 and y !=0:
-            pyautogui.moveTo(x, y, 0.2)
+            pyautogui.moveTo(x, y, 0.1)
             pyautogui.click()
 
     def open_inv(self,image_url, confidence=0.9) -> None:

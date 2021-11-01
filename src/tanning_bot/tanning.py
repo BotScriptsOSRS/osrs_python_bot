@@ -1,12 +1,12 @@
 from tanning_bot.hides_enum import Hide
-from utilities import ObjectDetection
+from walker import Walking
 import pyautogui
 from time import sleep
 
-class Tanning(ObjectDetection):
+class Tanning(Walking):
 
     def __init__(self):
-        ObjectDetection.__init__(self)
+        Walking.__init__(self)
 
     def trade_ellis(self, tanned_hide: Hide) -> None:
         """Trades the tanning NPC Ellis"""
@@ -20,15 +20,20 @@ class Tanning(ObjectDetection):
                 # click trade option
                 pyautogui.moveTo(coords[0],coords[1]+50, 0.1)
                 pyautogui.click()
-                sleep(2)
-            test_coords = self.locate_image_on_screen(tanned_hide[2])
+                if self.run_bool == True:
+                    sleep(2)
+                else:
+                    sleep(2)
+            else:
+                test_coords = self.locate_image_on_screen(tanned_hide[2])
 
     def tan_hides_shop(self, tanned_hide: Hide) -> None:
         """Tans all hides in the inventory"""
-        coords = self.locate_image_on_screen(tanned_hide[2], 0.99)
+        coords = self.locate_image_on_screen(tanned_hide[2], 0.97)
         if coords != []:
             pyautogui.moveTo(coords[0],duration = 0.2)
             pyautogui.click(button = 'right')
             # click all option
             pyautogui.moveTo(coords[0][0]-20, coords[0][1]+90)
             pyautogui.click()
+            sleep(0.5)

@@ -10,7 +10,7 @@ tan_bot = TanBot()
 hide = Hide.COW_HIDE.value
 tanned_hide = Hide.HARD_LEATHER.value
 
-breaker.login()
+# breaker.login()
 
 def main():
 

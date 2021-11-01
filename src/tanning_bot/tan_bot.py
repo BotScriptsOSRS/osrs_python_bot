@@ -6,9 +6,9 @@ from .tanning import Tanning
 
 class TanBot(Banking, Tanning, Walking, TakeBreak):
     
-    bank_shop_path = Path.ALKHARIDBANK_FRONT_TANSHOP.value
+    bank_shop_path_walk = Path.ALKHARIDBANK_FRONT_TANSHOP_WALK.value
+    bank_shop_path_run = Path.ALKHARIDBANK_FRONT_TANSHOP_RUN.value
     front_shop_area = Area.AL_KHARID_FRONT_TAN_SHOP.value
-    front_inside_path = Path.FRONT_TAN_INSIDE.value
     tan_area = Area.AL_KHARID_TAN_SHOP.value
     shop_bank_path = Path.FRONT_TANSHOP_ALKHARIDBANK.value
     bank_area = Area.AL_KHARID_BANK.value
@@ -23,10 +23,9 @@ class TanBot(Banking, Tanning, Walking, TakeBreak):
     def walk_to_shop(self) -> None:
         """Walks to the tanning shop."""
         if not self.check_if_at_destination(self.tan_area):
-            self.walk(self.bank_shop_path, self.front_shop_area, 1)
+            self.walk(self.bank_shop_path_walk, self.bank_shop_path_run, self.front_shop_area, self.tan_area, sleep_sec_run = 0.0, sleep_sec_walk = 3.2)
             while self.is_door_on_screen():
                 self.open_door()
-            self.walk(self.front_inside_path, self.tan_area, 2)
 
     def tan_hides(self, tanned_hide: Hide) -> None:
         """Tans the hides."""
@@ -38,15 +37,11 @@ class TanBot(Banking, Tanning, Walking, TakeBreak):
         if not self.check_if_at_destination(self.bank_area):
             while self.is_door_on_screen():
                 self.open_door()
-            self.walk(self.shop_bank_path, self.bank_area,2)
+            self.walk(self.shop_bank_path, self.shop_bank_path, self.bank_area, sleep_sec_run = 0.5, sleep_sec_walk = 5.5)
 
     def handle_banking(self, hide: Hide, tanned_hide: Hide) -> None:
         """Deposits the tanned hides and withdraws hides."""
         self.open_bank()
-        if self.all_button == False:
-            self.turn_on_button('all')
-        if self.note_button == False:
-            self.turn_on_button('item')
         self.deposit_or_withdraw_all(tanned_hide[0], 'deposit')
         if self.locate_image_on_screen(hide[1], 0.7) == []:
             self.close_bank()

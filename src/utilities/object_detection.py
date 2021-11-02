@@ -4,7 +4,6 @@ import numpy as np
 from .window_capture import WindowCapture
 from typing import Any, List
 from PIL import Image
-from time import sleep
 
 class ObjectDetection(WindowCapture):
 
@@ -33,7 +32,7 @@ class ObjectDetection(WindowCapture):
         """Returns the coordinates of the center of the closest object."""
         contours = self.find_object_contour(color)    
         if contours == []:
-            return [0, 0]
+            return []
         distance = []
         # Compute distance
         for c in contours:
@@ -64,12 +63,11 @@ class ObjectDetection(WindowCapture):
         while coords == []:
             pyautogui.press('esc')
             coords = self.locate_image_on_screen(image_url, confidence)
-            sleep(0.5)
 
-    def locate_image_on_screen(self,image_path: str, confidence: float = 0.9) -> List[int]:
+    def locate_image_on_screen(self,image_path: str, confidence: float = 0.9, gray_scale: bool = False) -> List[int]:
         """Returns the coordinates of the center of an image if the image can be found on the screen."""
         # Locate all objects on screen
-        objects = list(pyautogui.locateAllOnScreen(image_path, confidence = confidence))
+        objects = list(pyautogui.locateAllOnScreen(image_path, confidence = confidence, grayscale = gray_scale))
         # Create a list with the center of all objects
         center_coords = []
         for object in objects:
@@ -81,11 +79,11 @@ class ObjectDetection(WindowCapture):
             return []
         return center_coords
         
-    def click_image_on_screen(self,image_path: str, confidence: float = 0.9) -> None:
+    def click_image_on_screen(self,image_path: str, confidence: float = 0.9,  gray_scale: bool = False) -> None:
         """Clicks an image if it can be found on the screen."""
-        coords = self.locate_image_on_screen(image_path, confidence)
+        coords = self.locate_image_on_screen(image_path, confidence, gray_scale = gray_scale)
         if coords != []:
-            pyautogui.moveTo(coords[0], duration=0.2)
+            pyautogui.moveTo(coords[0], duration=0.15)
             pyautogui.click()
 
     @staticmethod

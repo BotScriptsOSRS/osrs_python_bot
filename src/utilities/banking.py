@@ -1,6 +1,5 @@
 from walker import Walking
 import pyautogui
-from time import sleep
 
 class Banking(Walking):
 
@@ -11,19 +10,22 @@ class Banking(Walking):
 
     def open_bank(self) -> None:
         """Opens the bank."""
-        coords = self.locate_image_on_screen('images/note_button_off.png', 0.7)
-        while coords == []:
-            self.click_closest_object(0)
-            if self.run_bool == True:
-                sleep(2)
-            else:
-                sleep(0.5)
-            coords = self.locate_image_on_screen('images/note_button_off.png', 0.7)
-        
-    @staticmethod
-    def close_bank() -> None:
-        """Closes the bank."""
-        pyautogui.press('esc')
+        while self.find_closest_object(0) != []:
+            coords = self.find_closest_object(0)
+            # right click bank
+            if coords != []:
+                pyautogui.moveTo(coords, duration = 0.001)
+                pyautogui.click(button = 'right')
+                coords_button = self.locate_image_on_screen('images/bank_booth.png',0.7) 
+                if coords_button != []:
+                    # click bank option
+                    pyautogui.moveTo(coords_button[0][0], coords_button[0][1], duration = 0.1)
+                    pyautogui.click()
+                    while self.locate_image_on_screen('images/note_button_off.png', gray_scale = True) == []:
+                        continue
+                    break
+                else:
+                    continue   
 
     def deposit_or_withdraw_all(self, image_path: str, action: str) -> None:
         """Deposits or withdraws all items based on image path."""

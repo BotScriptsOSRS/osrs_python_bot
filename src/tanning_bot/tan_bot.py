@@ -30,8 +30,8 @@ class TanBot(Banking, Tanning, Walking, TakeBreak):
 
     def tan_hides(self) -> None:
         """Tans the hides."""
-        self.trade_ellis()
-        self.tan_hides_shop()
+        coords_tan = self.trade_ellis()
+        self.tan_hides_shop(coords_tan)
         self.should_tan = False
         self.should_bank = True
 

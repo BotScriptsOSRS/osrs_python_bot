@@ -1,7 +1,6 @@
 from walker import Path, Area, Walking
-from utilities import TakeBreak
+from utilities import TakeBreak, Banking
 from .hides_enum import Hide
-from .banking import Banking
 from .tanning import Tanning
 
 class TanBot(Banking, Tanning, Walking, TakeBreak):

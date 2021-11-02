@@ -1,17 +1,15 @@
-from walker import Walking
 from utilities import TakeBreak
 from tanning_bot import TanBot, Hide
 import time 
 import random
 
-walker = Walking()
 breaker = TakeBreak()
 tan_bot = TanBot()
 hide = Hide.COW_HIDE.value
 tanned_hide = Hide.HARD_LEATHER.value
 
 # breaker.login()
-
+#  python src/utilities/server.py
 def main():
 
     time_start = time.time()

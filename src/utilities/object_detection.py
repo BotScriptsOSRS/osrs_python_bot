@@ -31,7 +31,7 @@ class ObjectDetection(WindowCapture):
     def find_closest_object(self, color: int) -> List[int]:
         """Returns the coordinates of the center of the closest object."""
         contours = self.find_object_contour(color)    
-        if contours == []:
+        if contours == ():
             return []
         distance = []
         # Compute distance

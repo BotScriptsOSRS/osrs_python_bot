@@ -12,6 +12,7 @@ tan_bot = TanBot(hide, tanned_hide)
 
 # breaker.login()
 # python src/utilities/server.py
+# pip install simplejson numpy pywin32 pyautogui opencv-python pillow
 def main():
 
     time_start = time.time()

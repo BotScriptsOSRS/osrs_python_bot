@@ -21,7 +21,7 @@ class Tanning(Walking):
                     pyautogui.moveTo(coords_trade[0][0], coords_trade[0][1], duration = 0.1)
                     pyautogui.click()
                     coords_tan = self.locate_image_on_screen(self.tanned_hide[3], 0.99)
-                    while coords_tan == [] or coords_tan == None:
+                    while coords_tan == [] or coords_tan[0] == None:
                         coords_tan = self.locate_image_on_screen(self.tanned_hide[3], 0.99)
                         continue
                     return coords_tan[0]

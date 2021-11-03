@@ -21,7 +21,7 @@ class Banking(Walking):
                     # click bank option
                     pyautogui.moveTo(coords_button[0][0], coords_button[0][1], duration = 0.1)
                     pyautogui.click()
-                    while self.locate_image_on_screen('images/note_button_off.png', gray_scale = True) == []:
+                    while self.locate_image_on_screen('images/note_button_off.png', confidence = 0.7, gray_scale = True) == []:
                         continue
                     break
                 else:

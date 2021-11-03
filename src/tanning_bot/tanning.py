@@ -9,21 +9,24 @@ class Tanning(Walking):
 
     def trade_ellis(self) -> List[int]:
         """Trades the tanning NPC Ellis"""
-        coords = self.find_closest_object(0)
-        # right click Ellis
-        if coords != []:
-            pyautogui.moveTo(coords, duration = 0.1)
-            pyautogui.click(button = 'right')
-        coords_trade = self.locate_image_on_screen('images/trade_ellis.png',0.85)
-        if coords_trade != []:
-            # click trade option
-            pyautogui.moveTo(coords_trade[0][0], coords_trade[0][1], duration = 0.1)
-            pyautogui.click()
         coords_tan = self.locate_image_on_screen(self.tanned_hide[3], 0.99)
         while coords_tan == []:
+            coords = self.find_closest_object(0)
+            # right click Ellis
+            if coords != []:
+                pyautogui.moveTo(coords, duration = 0.1)
+                pyautogui.click(button = 'right')
+            coords_trade = self.locate_image_on_screen('images/trade_ellis.png',0.85)
+            if coords_trade != []:
+                # click trade option
+                pyautogui.moveTo(coords_trade[0][0], coords_trade[0][1], duration = 0.1)
+                pyautogui.click()
+                while coords_tan == []:
+                    coords_tan = self.locate_image_on_screen(self.tanned_hide[3], 0.99)
+                    continue
+                return coords_tan[0] 
             coords_tan = self.locate_image_on_screen(self.tanned_hide[3], 0.99)
-            continue
-        return coords_tan[0]       
+                  
 
     def tan_hides_shop(self, coords_tan: List[int]) -> None:
         """Tans all hides in the inventory"""

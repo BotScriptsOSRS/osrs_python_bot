@@ -21,4 +21,8 @@ pip-selfcheck.json
 # Local History for Visual Studio Code
 .history/
 
+# python
+
+/src/utilities/__pycache__
+
 # End of https://mrkandreev.name/snippets/gitignore-generator/#venv,VisualStudioCode

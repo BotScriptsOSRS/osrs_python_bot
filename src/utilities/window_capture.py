@@ -1,4 +1,5 @@
-import win32gui
+
+from win32api import win32gui
 from typing import List
 
 class WindowCapture():

@@ -4,8 +4,8 @@ import pyautogui
 # ONLY USED TO CONFIGURE OFFSETS, NOT TO RUN SCRIPT.
 
 # Configuration
-client_top_border = 30
-client_side_border = 50
+client_top_border = 26
+client_side_border = 37
 offset_minimap_x = 103
 offset_minimap_y = 110
 offset_run_x = 207

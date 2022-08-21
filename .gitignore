@@ -24,7 +24,8 @@ pip-selfcheck.json
 # python
 
 /src/utilities/__pycache__
-
+/src/walker/__pycache__
+/src/tanning_bot/__pycache__
 # live data from the OSRS server
 /live_data.json
 

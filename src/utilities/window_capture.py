@@ -9,8 +9,8 @@ class WindowCapture():
     CLIENT_SIDE_BORDER: int = 43.0
     OFFSET_MINIMAP_X: float = 1359.0
     OFFSET_MINIMAP_Y: float = 83.0
-    OFFSET_RUN_X: float = 0.0
-    OFFSET_RUN_Y: float = 0.0
+    OFFSET_RUN_X: float = 78.0
+    OFFSET_RUN_Y: float = 49.0
     OFFSET_LOGOUT_X: float = 0.0
     OFFSET_LOGOUT_Y: float = 0.0
 

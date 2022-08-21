@@ -7,10 +7,10 @@ class WindowCapture():
 
     CLIENT_TOP_BORDER: int = 27.0
     CLIENT_SIDE_BORDER: int = 40.0
-    OFFSET_MINIMAP_X: float = -133.0
-    OFFSET_MINIMAP_Y: float = 85.0
-    OFFSET_RUN_X: float = 207.0
-    OFFSET_RUN_Y: float = 166.0
+    OFFSET_MINIMAP_X: float = 2438.0
+    OFFSET_MINIMAP_Y: float = 110.0
+    OFFSET_RUN_X: float = 2359.0
+    OFFSET_RUN_Y: float = 158.0
     OFFSET_LOGOUT_X: float = 20.0
     OFFSET_LOGOUT_Y: float = 20.0
 
@@ -26,9 +26,7 @@ class WindowCapture():
         # Get window handle.
         hwnd = win32gui.FindWindowEx(None, None, None, windowname)
         # Set window to foreground.
-        time.sleep(3)
         win32gui.SetForegroundWindow(hwnd)
-        print("Im a debug message after SetForegroundWindow")
         # Get the window size.
         rect = win32gui.GetWindowRect(hwnd)
         # Adjust size for borders

@@ -4,17 +4,22 @@ import pyautogui
 # ONLY USED TO CONFIGURE OFFSETS, NOT TO RUN SCRIPT.
 
 # Configuration
-client_top_border = 27
-client_side_border = 40
-offset_minimap_x = 2438
-offset_minimap_y = 110
-offset_run_x = 2359
-offset_run_y = 158
+client_top_border = 28
+client_side_border = 43
+offset_minimap_x = 1359
+offset_minimap_y = 83
+offset_run_x = 0
+offset_run_y = 0
 
 window = WindowCapture()
+
 box = window.get_window('Runelite')
+coords = window.get_center_minimap(box)
+print(coords)
+
+print("debug box", box)
+#print("debug minimap center", coords)
 
 # pyautogui.displayMousePosition()
-
-pyautogui.moveTo(offset_minimap_x,offset_minimap_y,2)
+pyautogui.moveTo(coords)
 # # 2438 110

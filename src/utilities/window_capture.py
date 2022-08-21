@@ -5,14 +5,14 @@ import time
 
 class WindowCapture():
 
-    CLIENT_TOP_BORDER: int = 27.0
-    CLIENT_SIDE_BORDER: int = 40.0
-    OFFSET_MINIMAP_X: float = 2438.0
-    OFFSET_MINIMAP_Y: float = 110.0
-    OFFSET_RUN_X: float = 2359.0
-    OFFSET_RUN_Y: float = 158.0
-    OFFSET_LOGOUT_X: float = 20.0
-    OFFSET_LOGOUT_Y: float = 20.0
+    CLIENT_TOP_BORDER: int = 28.0
+    CLIENT_SIDE_BORDER: int = 43.0
+    OFFSET_MINIMAP_X: float = 1359.0
+    OFFSET_MINIMAP_Y: float = 83.0
+    OFFSET_RUN_X: float = 0.0
+    OFFSET_RUN_Y: float = 0.0
+    OFFSET_LOGOUT_X: float = 0.0
+    OFFSET_LOGOUT_Y: float = 0.0
 
     def __init__(self):
         self.window = self.get_window('Runelite')
@@ -29,11 +29,16 @@ class WindowCapture():
         win32gui.SetForegroundWindow(hwnd)
         # Get the window size.
         rect = win32gui.GetWindowRect(hwnd)
+        # print("debug rect", rect)
         # Adjust size for borders
+        # x(left) = 1280
         x = rect[0]
+        # y(top) = 28
         y = rect[1] + self.CLIENT_TOP_BORDER
-        w = rect[2] - x - self.CLIENT_SIDE_BORDER
-        h = rect[3] - y - self.CLIENT_TOP_BORDER
+        # w(right) = 2560 - 43 = 2517
+        w = rect[2] - self.CLIENT_SIDE_BORDER
+        # h(bottom) = 1401 - 28 = 1373
+        h = rect[3] - self.CLIENT_TOP_BORDER
         print(x, y, w, h)
         return [x, y, w, h]
 

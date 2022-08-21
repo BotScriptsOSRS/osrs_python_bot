@@ -1,13 +1,14 @@
 
 import win32gui
 from typing import List
+import time
 
 class WindowCapture():
 
-    CLIENT_TOP_BORDER: int = 30
-    CLIENT_SIDE_BORDER: int = 50
-    OFFSET_MINIMAP_X: float = 103.0
-    OFFSET_MINIMAP_Y: float = 110.0
+    CLIENT_TOP_BORDER: int = 27.0
+    CLIENT_SIDE_BORDER: int = 40.0
+    OFFSET_MINIMAP_X: float = -133.0
+    OFFSET_MINIMAP_Y: float = 85.0
     OFFSET_RUN_X: float = 207.0
     OFFSET_RUN_Y: float = 166.0
     OFFSET_LOGOUT_X: float = 20.0
@@ -23,9 +24,11 @@ class WindowCapture():
     def get_window(self, windowname: str) -> List[int]:
         '''Returns the position of the window and the size of the window excluding the borders.'''
         # Get window handle.
-        hwnd = win32gui.FindWindow(None, windowname)
+        hwnd = win32gui.FindWindowEx(None, None, None, windowname)
         # Set window to foreground.
+        time.sleep(3)
         win32gui.SetForegroundWindow(hwnd)
+        print("Im a debug message after SetForegroundWindow")
         # Get the window size.
         rect = win32gui.GetWindowRect(hwnd)
         # Adjust size for borders
@@ -33,6 +36,7 @@ class WindowCapture():
         y = rect[1] + self.CLIENT_TOP_BORDER
         w = rect[2] - x - self.CLIENT_SIDE_BORDER
         h = rect[3] - y - self.CLIENT_TOP_BORDER
+        print(x, y, w, h)
         return [x, y, w, h]
 
     def get_center_minimap(self, window_features: List[int]) -> List[float]:

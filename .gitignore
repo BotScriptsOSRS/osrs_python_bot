@@ -25,4 +25,7 @@ pip-selfcheck.json
 
 /src/utilities/__pycache__
 
+# live data from the OSRS server
+/live_data.json
+
 # End of https://mrkandreev.name/snippets/gitignore-generator/#venv,VisualStudioCode

@@ -24,6 +24,6 @@ To use this bot, you need to have Python installed on your machine. Clone this r
 
 ## Usage
 
-To use the bot, run the `main.py` script in the `src` directory. You can customize the bot's behavior by modifying the parameters in the `data.py` file. For further details see: https://youtu.be/hgcr21_c0NY 
+For details on how to use the script on your PC, see: https://youtu.be/hgcr21_c0NY 
 
 
